@@ -54,8 +54,9 @@ def post_detail(request, id):
     post = next((post for post in posts if post['id'] == id), None)
     return render(request, 'blog/detail.html', {'post': post})
 
+
 def category_posts(request, category_slug):
     filtered_posts =\
         [post for post in posts if post['category'] == category_slug]
     return render(request, 'blog/category.html',
-                  {'posts': posts, 'category_slug': category_slug})
+                  {'posts': filtered_posts, 'category_slug': category_slug})
