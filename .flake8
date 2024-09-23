@@ -2,13 +2,12 @@
 max-line-lenght = 79
 max-complexity = 10
 ignore =
-    W503, W391, W292,
-    F811, F401, F841,
+    W503,
+    F811,
     D100, D101, D102, D103, D104, D105, D106, D107,
     D203, D205, D213,
     D400, D401,
-    N806, N818,
-    E302, E501, E231,
+    N806, N818
 exclude =
     tests/
     */migrations/

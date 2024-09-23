@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # Данные постов
 posts = [
     {
@@ -38,8 +39,8 @@ posts = [
         'text': '''Всю ночь и весь день шёл дождь и дул сильный
                 порывистый ветер. 25 октября.  Корабль за ночь разбило
                 в щепки; на том месте, где он стоял, торчат какие-то
-                жалкие обломки,  да и те видны только во время отлива.
-                Весь этот день я хлопотал  около вещей: укрывал и
+                жалкие обломки, да и те видны только во время отлива.
+                Весь этот день я хлопотал около вещей: укрывал и
                 укутывал их, чтобы не испортились от дождя.''',
     },
 ]
@@ -53,7 +54,10 @@ def post_detail(request, id):
     post = next((post for post in posts if post['id'] == id), None)
     return render(request, 'blog/detail.html', {'post': post})
 
+
 def category_posts(request, category_slug):
     filtered_posts = [post for post in posts if post['category'] == category_slug]
-    return render(request, 'blog/category.html', {'posts': posts, 'category_slug': category_slug})
+    return render(request, 'blog/category.html', {'posts': filtered_posts, 'category_slug': category_slug})
 
+
+# Обратите внимание на 2 пустые строки перед этой строкой
