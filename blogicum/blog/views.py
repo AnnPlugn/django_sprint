@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404
 
 # Данные постов
 posts = [
@@ -51,7 +51,7 @@ def index(request):
 
 
 def post_detail(request, id):
-    post = next((post for post in posts if post['id'] == id), None)
+    post = next((get_object_or_404(posts, id=id) for post in posts), None)
     return render(request, 'blog/detail.html', {'post': post})
 
 
