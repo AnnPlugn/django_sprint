@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 
@@ -51,12 +52,18 @@ def index(request):
 
 
 def post_detail(request, id):
-    post = next((p for p in posts if p['id'] == id), None)
-    return render(request, 'blog/detail.html', {'post': post})
+    """Отображение полного описания выбранной записи"""
+    post = [post for post in posts if post['id'] == id]
+    if not post:
+        raise Http404('Вы указали неверный id')
+    context = {'post': post[0]}
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category_slug):
-    filtered_posts =\
-        [post for post in posts if post['category'] == category_slug]
-    return render(request, 'blog/category.html',
-                  {'posts': filtered_posts, 'category_slug': category_slug})
+    """Отображение публикаций категории"""
+    sorted_posts = [post for post in posts if post['category']
+                    == category_slug]
+    context = {'category': category_slug,
+               'posts': sorted_posts}
+    return render(request, 'blog/category.html', context)
