@@ -57,6 +57,3 @@ def category_posts(request, category_slug):
     filtered_posts = [post for post in posts if post['category'] == category_slug]
     return render(request, 'blog/category.html', {'posts': posts, 'category_slug': category_slug})
 
-from django.shortcuts import render
-
-# Create your views here.
