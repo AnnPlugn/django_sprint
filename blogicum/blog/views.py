@@ -51,7 +51,7 @@ def index(request):
 
 
 def post_detail(request, id):
-    post = next((get_object_or_404(posts, id=id) for post in posts), None)
+    post = next((p for p in posts if p['id'] == id), None)
     return render(request, 'blog/detail.html', {'post': post})
 
 
